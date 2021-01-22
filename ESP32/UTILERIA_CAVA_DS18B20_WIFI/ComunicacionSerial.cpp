@@ -35,7 +35,7 @@ bool ComunicacionSerial::isNumeroEnteroPositivo( String lectura ){
 void ComunicacionSerial::procesarLectura( String lectura ){
 
   if( isNumeroEnteroPositivo( lectura ) ){
-    pControlador->setTemperaturaDeseada( lectura.toInt() );
+    pControlador->setTemperaturaDeseada( lectura.toInt(), true );
 
   }else if( lectura.equals( "Moduchip" ) ){
     Serial.println( "Utileria:" + (String) NOMBRE_SKETCH );

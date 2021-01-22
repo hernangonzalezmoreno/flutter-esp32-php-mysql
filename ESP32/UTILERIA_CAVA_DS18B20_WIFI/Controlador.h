@@ -18,7 +18,7 @@ class Controlador{
     Controlador();
     void setup();
     void ejecutar();
-    void setTemperaturaDeseada( int );
+    void setTemperaturaDeseada( int, bool informarAlHost );
     void setTemperaturaCava( float );
 
   private:
@@ -28,9 +28,11 @@ class Controlador{
     float temperaturaCava;
     byte temperaturaDeseada = 18;
     int tiempoReportarSerial = 0, tiempoReportarHost = 0, tiempoPeltier = 0;
+    int tiempoLeerHost = 0;
     bool enfriar = false;
     void reportarSerial();
     void reportarHost();
+    void leerHost();
     void controlarPeltier();
 
 };

@@ -33,11 +33,22 @@ void Controlador::ejecutar(){
 
   //Verifico si hay entradas por Serial para leer
   comunicacion.leerSerial();
+
+  //Verificamos si debo pedir valores al Host
+  tiempoLeerHost += delta.get();
+  if( tiempoLeerHost >= TIEMPO_LEER_HOST ){
+    tiempoLeerHost = 0;
+    leerHost();
+  }
+
 }
 
-void Controlador::setTemperaturaDeseada( int valor ){
-  temperaturaDeseada = (byte) constrain( valor, 0, 50 );
-  Serial.println( "OK " + (String) temperaturaDeseada );
+void Controlador::setTemperaturaDeseada( int valor, bool informarAlHost ){
+  byte nuevaTemperaturaDeseada = (byte) constrain( valor, 0, 50 );
+  bool cambiar = temperaturaDeseada != nuevaTemperaturaDeseada ? true : false;
+  if( cambiar ) temperaturaDeseada = nuevaTemperaturaDeseada;
+  if( informarAlHost ) httpManager.enviarTemperaturaDeseada( temperaturaDeseada );
+  if( cambiar ) Serial.println( "OK " + (String) temperaturaDeseada );
 }
 
 void Controlador::setTemperaturaCava( float valor ){
@@ -56,6 +67,10 @@ void Controlador::reportarSerial(){
 
 void Controlador::reportarHost(){
   httpManager.reportarDatos( temperaturaDeseada, temperaturaCava, (String) (digitalRead( PIN_PELTIER )*3.3f) );
+}
+
+void Controlador::leerHost(){
+  setTemperaturaDeseada( httpManager.leerTemperaturaDeseada().toInt(), false );
 }
 
 void Controlador::controlarPeltier(){

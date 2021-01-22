@@ -11,8 +11,8 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-#define RUTA_LEER_TEMP_DESEADA "/temperatura_deseada.php"
-#define RUTA_ENVIAR_DATOS "/datos.php?"
+#define RUTA_TEMP_DESEADA "/temperatura_deseada.php"
+#define RUTA_DATOS "/datos.php"
 
 class HttpManager{
 
@@ -20,8 +20,11 @@ class HttpManager{
     HttpManager();
     void setup();
     void reportarDatos( byte, float, String );
+    void enviarTemperaturaDeseada( byte );
+    String leerTemperaturaDeseada();
 
   private:
+    String consultarHost( String ruta );
 
 };
 

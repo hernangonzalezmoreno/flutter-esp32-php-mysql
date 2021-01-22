@@ -16,20 +16,45 @@ void HttpManager::setup(){
 
 void HttpManager::reportarDatos( byte tempDeseada, float tempCava, String peltier ){
 
+  //Contruimos la ruta junto con las variables get
+  String serverPath =
+   (String) HOST + (String) RUTA_DATOS
+   + "?tempDeseada=" + (String) tempDeseada
+   + "&tempCava=" + (String) tempCava
+   + "&estado=" + peltier
+  ;
+
+  consultarHost( serverPath );
+
+}
+
+void HttpManager::enviarTemperaturaDeseada( byte tempDeseada ){
+
+  //Contruimos la ruta junto con las variables get
+  String serverPath =
+   (String) HOST + (String) RUTA_TEMP_DESEADA
+   + "?tempDeseada=" + (String) tempDeseada
+  ;
+
+  consultarHost( serverPath );
+
+}
+
+String HttpManager::leerTemperaturaDeseada(){
+  return consultarHost( (String) HOST + (String) RUTA_TEMP_DESEADA );
+}
+
+String HttpManager::consultarHost( String ruta ){
+
+  //Payload
+  String resultado = "";
+
   //Chequeamos la conexion WiFi
   if( WiFi.status() == WL_CONNECTED ){
    HTTPClient http;
 
-   //Contruimos la ruta junto con las variables get
-   String serverPath =
-    (String) HOST + (String) RUTA_ENVIAR_DATOS
-    + "tempDeseada=" + (String) tempDeseada
-    + "&tempCava=" + (String) tempCava
-    + "&estado=" + peltier
-   ;
-
    // Your Domain name with URL path or IP address with path
-   http.begin(serverPath.c_str());
+   http.begin( ruta.c_str() );
 
    // Send HTTP GET request
    int httpResponseCode = http.GET();
@@ -37,8 +62,8 @@ void HttpManager::reportarDatos( byte tempDeseada, float tempCava, String peltie
    if (httpResponseCode>0) {
      Serial.print("HTTP Response code: ");
      Serial.println(httpResponseCode);
-     String payload = http.getString();
-     Serial.println(payload);
+     resultado = http.getString();
+     Serial.println( resultado );
    }
    else {
      Serial.print("Error code: ");
@@ -50,4 +75,6 @@ void HttpManager::reportarDatos( byte tempDeseada, float tempCava, String peltie
   else {
    Serial.println("WiFi Disconnected");
   }
+
+  return resultado;
 }
