@@ -27,9 +27,10 @@ class Controlador{
     HttpManager httpManager;
     float temperaturaCava;
     byte temperaturaDeseada = 18;
-    int tiempoReportar = 0, tiempoPeltier = 0;
+    int tiempoReportarSerial = 0, tiempoReportarHost = 0, tiempoPeltier = 0;
     bool enfriar = false;
-    void reportar();
+    void reportarSerial();
+    void reportarHost();
     void controlarPeltier();
 
 };

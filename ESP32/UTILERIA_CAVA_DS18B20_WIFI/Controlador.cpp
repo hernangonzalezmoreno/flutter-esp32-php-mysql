@@ -14,11 +14,18 @@ void Controlador::ejecutar(){
   //actualizo delta
   delta.actualizar( millis() );
 
-  //Verifico si se debo reportar
-  tiempoReportar += delta.get();
-  if( tiempoReportar >= TIEMPO_REPORTE ){
-    tiempoReportar = 0;
-    reportar();
+  //Verifico si se debo reportar por Serial
+  tiempoReportarSerial += delta.get();
+  if( tiempoReportarSerial >= TIEMPO_REPORTE_SERIAL ){
+    tiempoReportarSerial = 0;
+    reportarSerial();
+  }
+
+  //Verifico si se debo reportar por Host
+  tiempoReportarHost += delta.get();
+  if( tiempoReportarHost >= TIEMPO_REPORTE_HOST ){
+    tiempoReportarHost = 0;
+    reportarHost();
   }
 
   //Encendemos o apagamos la peltier segun corresponda
@@ -37,7 +44,7 @@ void Controlador::setTemperaturaCava( float valor ){
   temperaturaCava = valor;
 }
 
-void Controlador::reportar(){
+void Controlador::reportarSerial(){
   Serial.println(
     (String) temperaturaDeseada +
     "\t,\t" +
@@ -45,6 +52,10 @@ void Controlador::reportar(){
     "\t,\t" +
     (String) (digitalRead( PIN_PELTIER )*3.3f)
   );
+}
+
+void Controlador::reportarHost(){
+  httpManager.reportarDatos( temperaturaDeseada, temperaturaCava, (String) (digitalRead( PIN_PELTIER )*3.3f) );
 }
 
 void Controlador::controlarPeltier(){
