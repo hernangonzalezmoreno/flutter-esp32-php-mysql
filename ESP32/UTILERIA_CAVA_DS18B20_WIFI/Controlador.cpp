@@ -6,6 +6,10 @@ Controlador::Controlador(){
   pinMode( PIN_PELTIER, OUTPUT );
 }
 
+void Controlador::setup(){
+  httpManager.setup();
+}
+
 void Controlador::ejecutar(){
   //actualizo delta
   delta.actualizar( millis() );

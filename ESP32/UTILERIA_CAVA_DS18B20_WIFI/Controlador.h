@@ -8,6 +8,7 @@
 #endif
 
 #include <Delta.h>
+#include "HttpManager.h"
 #include "ComunicacionSerial.h"
 #include "Const.h"
 
@@ -15,6 +16,7 @@ class Controlador{
 
   public:
     Controlador();
+    void setup();
     void ejecutar();
     void setTemperaturaDeseada( int );
     void setTemperaturaCava( float );
@@ -22,6 +24,7 @@ class Controlador{
   private:
     Delta delta;
     ComunicacionSerial comunicacion;
+    HttpManager httpManager;
     float temperaturaCava;
     byte temperaturaDeseada = 18;
     int tiempoReportar = 0, tiempoPeltier = 0;

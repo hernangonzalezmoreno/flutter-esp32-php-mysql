@@ -6,6 +6,7 @@ if(
   isset( $_GET[ estado ])
 ){
   $datos = array(
+    'tiempoUnix'  => time(),
     'tempDeseada' => $_GET[ tempDeseada ],
     'tempCava'    => $_GET[ tempCava ],
     'estado'      => $_GET[ estado ]

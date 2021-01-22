@@ -4,9 +4,9 @@
 #define NOMBRE_SKETCH "CAVA_DS18B20_PELTIER_ONOFF"
 #define VERSION_SKETCH "v0.2"
 
-#define SSID "Carlos 2"
+#define RED_SSID "Carlos 2"
 #define CONTRASENA "graciela28"
-#define HOST "http://www.moduchip.com.ar/cava"
+#define HOST "http://www.moduchip.com.ar:80/cava"
 
 #define TIEMPO_REPORTE 1000
 #define PELTIER_ACTIVAR_POR_ALTO true

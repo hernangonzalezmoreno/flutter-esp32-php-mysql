@@ -3,7 +3,6 @@
 * Microcontrolador ESP32. Placa: DOIT ESP32 DEVKIT V1.
 ********************************************************/
 
-#include <WiFi.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <DS18B20Events.h>
@@ -21,17 +20,7 @@ void setup(){
 	DS18B20Events::setInterval( TIEMPO_LECTURA_DS18B20 );
   sensorCavaDS18B20.onChange = cambioDeTemperatura;
   Serial.println( (String) NOMBRE_SKETCH + " " + (String) VERSION_SKETCH );
-
-  Serial.println( "Conectando a la red: " + (String) SSID );
-  WiFi.begin( SSID, CONTRASENA );
-  while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
-  }
-
-  Serial.println( "Conexion exitosa" );
-  Serial.println( "IP address: " + (String) WiFi.localIP() );
-
+  controlador.setup();
 }
 
 void loop(){
