@@ -64,9 +64,4 @@ class Home extends StatelessWidget {
 
   }
 
-  void _alPresionar() async{
-    //String r = await cavaApiRest.actualizarDatos();
-    //print( r );
-  }
-
 }

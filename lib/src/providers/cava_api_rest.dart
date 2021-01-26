@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class CavaApiRest with ChangeNotifier{
 
-  Map<String, dynamic> _datos;
+  Map<String, dynamic> _datos = new Map();
 
   CavaApiRest(){
     _datos = {
