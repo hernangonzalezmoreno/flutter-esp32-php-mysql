@@ -12,54 +12,112 @@ class Home extends StatelessWidget {
 
     final cavaApiRest = Provider.of<CavaApiRest>(context);
 
+    //String fecha = "${cavaApiRest.datos['tiempoUnix'].hour}:${cavaApiRest.datos['tiempoUnix'].minute}";
+
     return Scaffold(
       
       appBar: AppBar(
         title: Text('CAVA'),
       ),
       
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+      body: Padding(
+        
+        padding: const EdgeInsets.all(20),
 
-            Text( 
-              "${cavaApiRest.datos['tiempoUnix']}",
-              style: TextStyle(
-                fontSize: 25,
-                /*fontWeight: FontWeight.bold,
-                color: Colors.green,
-                backgroundColor: Colors.pink*/
-              ), 
-            ),
-            
-            
-            Text( 
-              "Temp. Deseada",
-              style: TextStyle(
-                fontSize: 25,
-              ), 
-            ),
+        child: Center(
+          
+          child: Column(
 
-            Text( 
-              "Temp. interior CAVA",
-              style: TextStyle(
-                fontSize: 30
+            mainAxisSize: MainAxisSize.max,
+
+            children: [
+              
+              Expanded(
+                  child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    Text(
+                      "${cavaApiRest.datos['tiempoUnix'].hour}:${cavaApiRest.datos['tiempoUnix'].minute}" +
+                      " ${cavaApiRest.datos['tiempoUnix'].day}/${cavaApiRest.datos['tiempoUnix'].month}/${cavaApiRest.datos['tiempoUnix'].year}",
+                      style: TextStyle(
+                        fontSize: 20,
+                        /*fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                        backgroundColor: Colors.pink*/
+                      ), 
+                    ),
+                    
+                    SizedBox( height: 20.0 ),
+
+                    Text(
+                      "Temperatura de la cava:",
+                      style: TextStyle(
+                        fontSize: 16
+                      ),
+                    ),
+
+                    Text(
+                      cavaApiRest.datos['tempCava'].toString(),
+                      style: TextStyle(
+                        fontSize: 35
+                      ),
+                    ),
+
+                    Text(
+                      "Estado: ${cavaApiRest.datos['estado']}"
+                    ),
+
+                    SizedBox( height: 20.0 ),
+
+                    Text(
+                      "Temperatura deseada: ${cavaApiRest.datos['tempDeseada']}",
+                      style: TextStyle(
+                        fontSize: 16
+                      ),
+                    ),
+
+                  ],
+                ),
               ),
-            ),
-            
-            Text( "Estado" )
+
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  FloatingActionButton(
+                    child: Icon( Icons.remove ),
+                    onPressed: (){},
+                  ),
+
+                  Text(
+                    "18",
+                    style: TextStyle(
+                      fontSize: 35
+                    ),
+                  ),
+
+                  FloatingActionButton(
+                    child: Icon( Icons.add ),
+                    onPressed: (){},
+                  )
+
+                ],
+              )
+
+            ],
+          ),
 
 
-          ],
         ),
       ),
 
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         child: Icon( Icons.accessibility_new ),
         onPressed: () => cavaApiRest.actualizarDatos(),
-      ),
+      ),*/
     );
 
   }

@@ -8,10 +8,10 @@ class CavaApiRest with ChangeNotifier{
 
   CavaApiRest(){
     _datos = {
-      "tiempoUnix" : 100,
-      "tempDeseada" : "4",
-      "tempCava" : "5",
-      "estado" : "2.2"
+      "tiempoUnix" : "",
+      "tempDeseada" : "",
+      "tempCava" : "",
+      "estado" : ""
     };
   }
 
@@ -28,6 +28,7 @@ class CavaApiRest with ChangeNotifier{
       
       if( respuesta.statusCode == 200 ){ // El codigo 200 significa que la peticion ser realizo exitosamente
         _datos = jsonDecode( respuesta.body );
+        _datos[ 'tiempoUnix' ] = DateTime.fromMillisecondsSinceEpoch( _datos[ 'tiempoUnix' ] * 1000 );
         retorno = respuesta.body;
       }else{
         retorno = "Error en la peticion, statusCode: ${respuesta.statusCode}";
