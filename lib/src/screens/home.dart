@@ -87,11 +87,11 @@ class Home extends StatelessWidget {
 
                   FloatingActionButton(
                     child: Icon( Icons.remove ),
-                    onPressed: (){},
+                    onPressed: () => cavaApiRest.cambiarTemperaturaDeseada( -1 ),
                   ),
 
                   Text(
-                    "18",
+                    cavaApiRest.temperaturaDeseada.toString(),
                     style: TextStyle(
                       fontSize: 35
                     ),
@@ -99,7 +99,7 @@ class Home extends StatelessWidget {
 
                   FloatingActionButton(
                     child: Icon( Icons.add ),
-                    onPressed: (){},
+                    onPressed: () => cavaApiRest.cambiarTemperaturaDeseada( 1 ),
                   )
 
                 ],
