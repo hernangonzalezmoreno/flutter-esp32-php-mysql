@@ -12,8 +12,6 @@ class Home extends StatelessWidget {
 
     final cavaApiRest = Provider.of<CavaApiRest>(context);
 
-    //String fecha = "${cavaApiRest.datos['tiempoUnix'].hour}:${cavaApiRest.datos['tiempoUnix'].minute}";
-
     return Scaffold(
       
       appBar: AppBar(
@@ -39,8 +37,8 @@ class Home extends StatelessWidget {
                   children: [
 
                     Text(
-                      "${cavaApiRest.datos['tiempoUnix'].hour}:${cavaApiRest.datos['tiempoUnix'].minute}" +
-                      " ${cavaApiRest.datos['tiempoUnix'].day}/${cavaApiRest.datos['tiempoUnix'].month}/${cavaApiRest.datos['tiempoUnix'].year}",
+                      "${cavaApiRest.datos['hora']}:${cavaApiRest.datos['minuto']}" +
+                      " ${cavaApiRest.datos['dia']}/${cavaApiRest.datos['mes']}/${cavaApiRest.datos['ano']}",
                       style: TextStyle(
                         fontSize: 20,
                         /*fontWeight: FontWeight.bold,
