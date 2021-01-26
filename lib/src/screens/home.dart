@@ -37,8 +37,9 @@ class Home extends StatelessWidget {
                   children: [
 
                     Text(
-                      "${cavaApiRest.datos['hora']}:${cavaApiRest.datos['minuto']}" +
-                      " ${cavaApiRest.datos['dia']}/${cavaApiRest.datos['mes']}/${cavaApiRest.datos['ano']}",
+                      "${cavaApiRest.datos['hora']}:${cavaApiRest.datos['minuto']}\n" +
+                      "${cavaApiRest.datos['dia']}/${cavaApiRest.datos['mes']}/${cavaApiRest.datos['ano']}",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
                         /*fontWeight: FontWeight.bold,
