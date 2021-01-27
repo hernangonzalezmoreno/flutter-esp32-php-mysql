@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       
       appBar: AppBar(
-        title: Text('CAVA'),
+        title: Text('Cava'),
       ),
       
       body: Padding(

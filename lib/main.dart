@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return MaterialApp(
-      title: 'Material App',
+      title: 'Cava', // titulo que figura al minimizar la app
       initialRoute: 'home',
       routes: {
         'home': (context) => Home()
