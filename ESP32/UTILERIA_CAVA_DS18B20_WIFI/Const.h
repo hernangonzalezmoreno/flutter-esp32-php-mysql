@@ -4,14 +4,14 @@
 #define NOMBRE_SKETCH             "UTILERIA_CAVA_DS18B20_WIFI"            // Nombre del sketch
 #define VERSION_SKETCH            "v0.2"                                  // Version del sketch
 
-#define RED_SSID                  "Carlos 2"                              // Nombre de la red WiFi
-#define CONTRASENA                "graciela28"                            // password de la red WiFi
+#define RED_SSID                  "Carolina 2.4GHz"                       // Nombre de la red WiFi
+#define CONTRASENA                "lavidaesunalenteja92"                  // password de la red WiFi
 #define HOST                      "http://www.moduchip.com.ar:80/cava"    // Servidor al cual conectarse
 
 #define PELTIER_ACTIVAR_POR_ALTO  true                                    // Activar la peltir por ALTO o por BAJO
 
 #define TIEMPO_REPORTE_SERIAL     1000                                    // Reportar valores por serial cada X milisegundos
-#define TIEMPO_REPORTE_HOST       3000                                    // Reportar valores al Host cada X milisegundos
+#define TIEMPO_REPORTE_HOST       45000                                   // Reportar valores al Host cada X milisegundos
 #define TIEMPO_LEER_HOST          2800                                    // Leer valores del Host cada X milisegundos
 
 #define PIN_PELTIER               16                                      // GPIO 16, en la placa figura como RX2
