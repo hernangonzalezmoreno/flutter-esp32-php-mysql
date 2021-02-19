@@ -1,0 +1,5 @@
+Este es el link oficial a la libreria:
+https://ericjgagnon.github.io/wickedpicker/
+
+Antes de encontrarla busque lo siguiente:
+https://www.sitepoint.com/10-jquery-time-picker-plugins/

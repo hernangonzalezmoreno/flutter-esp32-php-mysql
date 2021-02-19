@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Cava testing</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="jquery/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="wickedpicker/css/wickedpicker.min.css">
+
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script src="jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="wickedpicker/js/wickedpicker.min.js"></script>
+    <script src="jquery/jquery-traduccion.js"></script>
+
+    <script>
+
+    $( function() {
+
+      $( "#desdeFecha" ).datepicker( datepickerEspanol );
+      $( '#desdeHora' ).wickedpicker();
+
+      $( "#hastaFecha" ).datepicker( datepickerEspanol );
+      $( '#hastaHora' ).wickedpicker();
+
+    });
+
+    function hola(){
+      alert( "Bien" );
+    }
+
+    </script>
+
+  </head>
+
+  <body class="w3-container">
+
+    <div class="w3-container" >
+      <h2>Cava testing</h2>
+    </div>
+
+    <div class="w3-row w3-border">
+
+      <div class="w3-container w3-half">
+        <h3>Desde:</h3>
+        <p>Fecha: <input type="text" id="desdeFecha"></p>
+        <p>Hora: <input type="text" name="desdeHora" id="desdeHora"/></p>
+      </div>
+
+      <div class="w3-container w3-half">
+        <h3>Hasta:</h3>
+        <p>Fecha: <input type="text" id="hastaFecha"></p>
+        <p>Hora: <input type="text" name="hastaHora" id="hastaHora"/></p>
+      </div>
+
+    </div>
+
+    <div class="w3-container" >
+      <p>
+        <button class="w3-button w3-black" onclick="hola()">Ver datos</button>
+        <button class="w3-button w3-black">Graficar</button>
+        <button class="w3-button w3-black">Exportar .csv</button>
+      </p>
+    </div>
+
+  </body>
+
+</html>
