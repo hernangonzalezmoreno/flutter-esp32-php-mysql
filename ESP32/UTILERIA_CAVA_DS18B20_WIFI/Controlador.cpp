@@ -28,6 +28,13 @@ void Controlador::ejecutar(){
     reportarHost();
   }
 
+  //Verifico si se debe guardar en Host
+  tiempoGuardarHost += delta.get();
+  if( tiempoGuardarHost >= TIEMPO_GUARDAR_HOST ){
+    tiempoGuardarHost = 0;
+    guardarHost();
+  }
+
   //Encendemos o apagamos la peltier segun corresponda
   controlarPeltier();
 
@@ -67,6 +74,10 @@ void Controlador::reportarSerial(){
 
 void Controlador::reportarHost(){
   httpManager.reportarDatos( temperaturaDeseada, temperaturaCava, (String) (digitalRead( PIN_PELTIER )*3.3f) );
+}
+
+void Controlador::guardarHost(){
+  httpManager.guardarDatos( temperaturaDeseada, temperaturaCava, (String) (digitalRead( PIN_PELTIER )*3.3f) );
 }
 
 void Controlador::leerHost(){

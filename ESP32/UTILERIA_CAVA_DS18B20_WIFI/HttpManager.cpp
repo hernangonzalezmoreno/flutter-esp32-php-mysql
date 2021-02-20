@@ -28,6 +28,20 @@ void HttpManager::reportarDatos( byte tempDeseada, float tempCava, String peltie
 
 }
 
+void HttpManager::guardarDatos( byte tempDeseada, float tempCava, String peltier ){
+
+  //Contruimos la ruta junto con las variables get
+  String serverPath =
+   (String) HOST + (String) GUARDAR_DATOS
+   + "?tempDeseada=" + (String) tempDeseada
+   + "&tempCava=" + (String) tempCava
+   + "&estado=" + peltier
+  ;
+
+  consultarHost( serverPath );
+
+}
+
 void HttpManager::enviarTemperaturaDeseada( byte tempDeseada ){
 
   //Contruimos la ruta junto con las variables get
