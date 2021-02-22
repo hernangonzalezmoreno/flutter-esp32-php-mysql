@@ -82,6 +82,16 @@
 
     }
 
+    function exportarCsv(){
+      let desdeUnix = procesarFechasYHoras( "#desdeFecha", "#desdeHora" );
+      let hastaUnix = procesarFechasYHoras( "#hastaFecha", "#hastaHora" );
+
+      if( !isNaN( desdeUnix ) && !isNaN( hastaUnix ) ){
+        let url = 'exportarcsv.php?desde=' + desdeUnix + "&hasta=" + hastaUnix;
+        window.open( url , '_blank');
+      }
+    }
+
     function getAjaxDatos(){
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
@@ -167,7 +177,7 @@
           <p>
             <button class="w3-button w3-black" onclick="verDatos()">Ver datos</button>
             <button class="w3-button w3-black">Graficar</button>
-            <button class="w3-button w3-black">Exportar .csv</button>
+            <button class="w3-button w3-black" onclick="exportarCsv()">Exportar .csv</button>
           </p>
         </div>
 
