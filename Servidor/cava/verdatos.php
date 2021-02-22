@@ -33,10 +33,10 @@
 
         echo
         '<tr '.$colorFila.'>
-          <td>'.$fechaHora->format('d-m-Y').',</td>
-          <td>'.$fechaHora->format('H:i').',</td>
-          <td>'.$registro[ temperatura_deseada ].',</td>
-          <td>'.$registro[ temperatura_cava ].',</td>
+          <td>'.$fechaHora->format('d-m-Y').'</td>
+          <td>'.$fechaHora->format('H:i').'</td>
+          <td>'.$registro[ temperatura_deseada ].'</td>
+          <td>'.$registro[ temperatura_cava ].'</td>
           <td>'.$registro[ voltaje ].'</td>
         </tr>';
       }
