@@ -20,6 +20,7 @@
 
     var desdeAno, desdeMes, desdeDia, desdeHora, desdeMinuto;
     var hastaAno, hastaMes, hastaDia, hastaHora, hastaMinuto;
+    var tempDeseada = 18;
 
     setInterval( getAjaxDatos, 3000 );
 
@@ -32,6 +33,17 @@
       $( '#hastaHora' ).wickedpicker( { twentyFour: true } );
 
     });
+
+    function iniciarTempDeseada(){
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         document.getElementById( "TemperaturaDeseada" ).innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "temperatura_deseada.php", true);
+      xhttp.send();
+    }
 
     function procesarFechasYHoras( idFecha, idHora ){
       let UTC_Argentina = -3;
@@ -81,11 +93,27 @@
       xhttp.send();
     }
 
+    function incrementarTempDeseada( incremento ){
+      tempDeseada = parseInt( document.getElementById( "TemperaturaDeseada" ).innerHTML );
+      if( isNaN( tempDeseada ) ) return;
+      tempDeseada += incremento;
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         document.getElementById( "TemperaturaDeseada" ).innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "temperatura_deseada.php?tempDeseada=" + tempDeseada, true);
+      xhttp.send();
+
+    }
+
     </script>
 
   </head>
 
-  <body class="w3-container">
+  <body class="w3-container" onload="iniciarTempDeseada()">
 
     <div class="w3-container" >
       <h2>Cava testing</h2>
@@ -113,9 +141,9 @@
           <div id="ajax_datos"></div>
 
           <footer class="w3-container" style="text-align:center;">
-              <button class="w3-button w3-black w3-third">-</button>
-              <span class="w3-third" style="font-size:large;">28</span>
-              <button class="w3-button w3-black w3-third">+</button>
+              <button class="w3-button w3-black w3-third" onclick="incrementarTempDeseada( -1 )">-</button>
+              <span class="w3-third" style="font-size:large;" id="TemperaturaDeseada"></span>
+              <button class="w3-button w3-black w3-third" onclick="incrementarTempDeseada( 1 )">+</button>
           </footer>
 
         </div><!--cierro la card-->
